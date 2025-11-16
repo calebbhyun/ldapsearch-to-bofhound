@@ -5,8 +5,16 @@ Convert `ldapsearch` (LDIF) output into **BOFHound**-compatible format.
 Example:
 
     # 1) Collect from LDAP
-    ldapsearch -LLL -E pr=10000/noprompt -E '!1.2.840.113556.1.4.801=::MAMCAQc=' -o ldif-wrap=no -H ldap://10.0.0.1:389 -x -D 'domainuser@corp.local' -w 'password' -b 'DC=corp,DC=local' '(objectclass=*)' '*' nTSecurityDescriptor | tee ldapsearch_all.out
-    
+    ldapsearch -LLL \
+      -E pr=10000/noprompt \
+      -E '!1.2.840.113556.1.4.801=::MAMCAQc=' \
+      -o ldif-wrap=no \
+      -H ldap://10.0.0.1:389 \
+      -x -D 'domainuser@corp.local' -w 'password' \
+      -b 'DC=corp,DC=local' \
+      '(objectclass=*)' '*' nTSecurityDescriptor \
+      | tee ldapsearch_all.out
+
     # 2) Convert to BOFHound-compatible format.
     python3 ldapsearch-to-bofhound.py ldapsearch_all.txt all.bofhound
 
