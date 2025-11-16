@@ -36,5 +36,5 @@ ldapsearch -LLL \
   -H ldap://10.0.0.1:389 \
   -x -D 'domainuser@corp.local' -w 'password' \
   -b 'DC=corp,DC=local' \
-  '(objectclass=*)' * nTSecurityDescriptor \
+  '(objectclass=*)' '*' nTSecurityDescriptor \
   | tee ldapsearch_all.out
