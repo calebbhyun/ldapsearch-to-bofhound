@@ -106,6 +106,7 @@ def decode_dns_records(encoded_list: str) -> str:
 # Map attribute name -> decode function. Case-sensitive to match AD attribute names.
 DECODERS = {
     "objectSid": decode_sid,
+    "securityIdentifier": decode_sid,  # needed for trustedDomain objects / domain trusts
     "objectGUID": decode_guid,
     "dnsRecord": decode_dns_records,
     # Various binary GUID / blob-ish attrs that BOFHound likes as b'\\x..'
